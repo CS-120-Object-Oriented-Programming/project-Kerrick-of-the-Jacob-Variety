@@ -18,8 +18,8 @@ public class CommandWords {
 
 	/**
 	 * Check whether a given String is a valid command word.
-	 *
-	 * @param aString The string to determine whether it is a valid command.
+	 * 
+	 * @param aCommandEnum The command enum to determine whether it is a valid command.
 	 * @return true if a given string is a valid command, false if it isn't.
 	 */
 	public static boolean isCommand(CommandEnum aCommandEnum) {
@@ -64,6 +64,7 @@ public class CommandWords {
 		case "back":
 			retval = CommandEnum.BACK;
 			break;
+			default:
 		}
 		return retval;
 	}

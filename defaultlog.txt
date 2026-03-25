@@ -6,10 +6,6 @@ Type 'help' if you need help.
 Outside:
 You are outside in the center of the King's College campus.
 Exits: north east south west 
-> back
-Outside:
-You are outside in the center of the King's College campus.
-Exits: north east south west 
 > go north
 Essef:
 You are at the other main dormitory on campus.
@@ -18,18 +14,8 @@ Exits: south
 Outside:
 You are outside in the center of the King's College campus.
 Exits: north east south west 
-> back
+> go back
 Essef:
 You are at the other main dormitory on campus.
 Exits: south 
-> back
-Outside:
-You are outside in the center of the King's College campus.
-Exits: north east south west 
-> back
-Essef:
-You are at the other main dormitory on campus.
-Exits: south 
-> status
-You have earned 0 points in 7 turns.
 > 

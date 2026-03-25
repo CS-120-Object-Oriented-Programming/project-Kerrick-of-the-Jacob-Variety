@@ -69,8 +69,6 @@ public class Game {
 		if (command.isUnknown()) {
 			Writer.println("I don't know what you mean...");
 		} else {
-			
-			turns++;
 
 			CommandEnum commandWord = command.getCommandWord();
 			switch (commandWord) {
@@ -114,31 +112,32 @@ public class Game {
 		if (!command.hasSecondWord()) {
 			// if there is no second word, we don't know where to go...
 			Writer.println("Go where?");
-			turns--;
 		} else {
 			String direction = command.getRestOfLine();
 
 			// Try to leave current.
 			Door doorway = null;
 			if (direction.equals("north")) {
-				doorway = currentPlayer.getRoom().northExit;
+				doorway = currentPlayer.getRoom().getNorthExit();
 			}
 			if (direction.equals("east")) {
-				doorway = currentPlayer.getRoom().eastExit;
+				doorway = currentPlayer.getRoom().getEastExit();
 			}
 			if (direction.equals("south")) {
-				doorway = currentPlayer.getRoom().southExit;
+				doorway = currentPlayer.getRoom().getSouthExit();
 			}
 			if (direction.equals("west")) {
-				doorway = currentPlayer.getRoom().westExit;
+				doorway = currentPlayer.getRoom().getWestExit();
 			}
 
-			if (doorway == null) {
+			if (direction.equals("back")) {
+				back();
+			} else if (doorway == null) {
 				Writer.println("There is no door!");
-				turns--;
 			} else {
 				Room newRoom = doorway.getDestination();
 				currentPlayer.setRoom(newRoom);
+				turns++;
 				printLocationInformation();
 			}
 		}
@@ -161,7 +160,10 @@ public class Game {
 		Writer.println("around at the university.");
 		Writer.println();
 		Writer.println("Your command words are:");
-		Writer.println("   go quit help look");
+		for (CommandEnum command : CommandEnum.values()) {
+			Writer.print(command.getCommand() + " ");
+		}
+		Writer.println();
 	}
 
 	/**
@@ -200,16 +202,16 @@ public class Game {
 		Writer.println(currentPlayer.getRoom().getName() + ":");
 		Writer.println("You are " + currentPlayer.getRoom().getDescription());
 		Writer.print("Exits: ");
-		if (currentPlayer.getRoom().northExit != null) {
+		if (currentPlayer.getRoom().getNorthExit() != null) {
 			Writer.print("north ");
 		}
-		if (currentPlayer.getRoom().eastExit != null) {
+		if (currentPlayer.getRoom().getEastExit() != null) {
 			Writer.print("east ");
 		}
-		if (currentPlayer.getRoom().southExit != null) {
+		if (currentPlayer.getRoom().getSouthExit() != null) {
 			Writer.print("south ");
 		}
-		if (currentPlayer.getRoom().westExit != null) {
+		if (currentPlayer.getRoom().getWestExit() != null) {
 			Writer.print("west ");
 		}
 		Writer.println("");
@@ -219,22 +221,21 @@ public class Game {
 	 * Prints out the location information.
 	 */
 	private void look() {
-		turns--;
 		printLocationInformation();
 	}
 	
 	/**
-	 * Prints out the status of the player object
+	 * Prints out the status of the player object.
 	 */
 	private void printStatus() {
-		turns--;
 		Writer.println("You have earned " + score + " points in " + turns + " turns.");
 	}
 	
 	/**
-	 * Returns the player to the previous room
+	 * Returns the player to the previous room.
 	 */
 	private void back() {
+		turns++;
 		currentPlayer.setRoom(currentPlayer.getPreviousRoom());
 		printLocationInformation();
 	}
