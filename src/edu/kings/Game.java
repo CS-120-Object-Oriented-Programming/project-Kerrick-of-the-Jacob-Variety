@@ -199,22 +199,7 @@ public class Game {
 	 * Prints out the current location and exits.
 	 */
 	private void printLocationInformation() {
-		Writer.println(currentPlayer.getRoom().getName() + ":");
-		Writer.println("You are " + currentPlayer.getRoom().getDescription());
-		Writer.print("Exits: ");
-		if (currentPlayer.getRoom().getNorthExit() != null) {
-			Writer.print("north ");
-		}
-		if (currentPlayer.getRoom().getEastExit() != null) {
-			Writer.print("east ");
-		}
-		if (currentPlayer.getRoom().getSouthExit() != null) {
-			Writer.print("south ");
-		}
-		if (currentPlayer.getRoom().getWestExit() != null) {
-			Writer.print("west ");
-		}
-		Writer.println("");
+		Writer.print(currentPlayer.getRoom().toString());
 	}
 	
 	/**

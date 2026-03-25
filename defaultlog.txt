@@ -3,19 +3,8 @@ Welcome to the Campus of Kings!
 Campus of Kings is a new, incredibly boring adventure game.
 Type 'help' if you need help.
 
-Outside:
+
+ Outside:
 You are outside in the center of the King's College campus.
 Exits: north east south west 
-> go north
-Essef:
-You are at the other main dormitory on campus.
-Exits: south 
-> back
-Outside:
-You are outside in the center of the King's College campus.
-Exits: north east south west 
-> go back
-Essef:
-You are at the other main dormitory on campus.
-Exits: south 
 > 
