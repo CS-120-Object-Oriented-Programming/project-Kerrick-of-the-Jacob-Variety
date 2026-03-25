@@ -10,6 +10,7 @@ package edu.kings;
  * commands that the parser returns.
  *
  * @author Maria Jump
+ * @author Jacob Kerrick
  * @version 2015.02.01
  *
  * Used with permission from Dr. Maria Jump at Northeastern University
@@ -18,8 +19,12 @@ package edu.kings;
 public class Game {
 	/** The world where the game takes place. */
 	private World world;
-	/** The player character itself */
+	/** The player character itself. */
 	private Player currentPlayer;
+	/** The Score incrementer. */
+	private int score;
+	/** The Turn incrementer. */
+	private int turns;
 
 	/**
 	 * Create the game and initialize its internal map.
@@ -44,6 +49,7 @@ public class Game {
 			wantToQuit = processCommand(command);
 			// other stuff that needs to happen every turn can be added here.
 		}
+		printStatus();
 		printGoodbye();
 	}
 
@@ -63,17 +69,30 @@ public class Game {
 		if (command.isUnknown()) {
 			Writer.println("I don't know what you mean...");
 		} else {
+			
+			turns++;
 
 			CommandEnum commandWord = command.getCommandWord();
-			if (commandWord == CommandEnum.HELP) {
+			switch (commandWord) {
+			case CommandEnum.HELP:
 				printHelp();
-			} else if (commandWord == CommandEnum.GO) {
+				break;
+			case CommandEnum.GO:
 				goRoom(command);
-			} else if (commandWord == CommandEnum.QUIT) {
+				break;
+			case CommandEnum.QUIT:
 				wantToQuit = quit(command);
-			} else if (commandWord == CommandEnum.LOOK) {
+				break;
+			case CommandEnum.LOOK:
 				look();
-			} else {
+				break;
+			case CommandEnum.STATUS:
+				printStatus();
+				break;
+			case CommandEnum.BACK:
+				back();
+				break;
+			default:
 				Writer.println(commandWord + " is not implemented yet!");
 			}
 		}
@@ -95,6 +114,7 @@ public class Game {
 		if (!command.hasSecondWord()) {
 			// if there is no second word, we don't know where to go...
 			Writer.println("Go where?");
+			turns--;
 		} else {
 			String direction = command.getRestOfLine();
 
@@ -115,6 +135,7 @@ public class Game {
 
 			if (doorway == null) {
 				Writer.println("There is no door!");
+				turns--;
 			} else {
 				Room newRoom = doorway.getDestination();
 				currentPlayer.setRoom(newRoom);
@@ -198,6 +219,23 @@ public class Game {
 	 * Prints out the location information.
 	 */
 	private void look() {
+		turns--;
+		printLocationInformation();
+	}
+	
+	/**
+	 * Prints out the status of the player object
+	 */
+	private void printStatus() {
+		turns--;
+		Writer.println("You have earned " + score + " points in " + turns + " turns.");
+	}
+	
+	/**
+	 * Returns the player to the previous room
+	 */
+	private void back() {
+		currentPlayer.setRoom(currentPlayer.getPreviousRoom());
 		printLocationInformation();
 	}
 }

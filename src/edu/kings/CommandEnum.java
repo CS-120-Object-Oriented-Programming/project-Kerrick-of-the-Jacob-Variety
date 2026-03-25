@@ -4,7 +4,10 @@ public enum CommandEnum {
 GO("go"),
 QUIT("quit"),
 HELP("help"),
-LOOK("look");
+LOOK("look"),
+STATUS("status"),
+BACK("back");
+	
 
 	private final String command;
 	
