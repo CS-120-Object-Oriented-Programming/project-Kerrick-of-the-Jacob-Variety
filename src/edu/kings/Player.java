@@ -1,7 +1,9 @@
 package edu.kings;
+import java.util.HashMap;
 /**
  * @author Kerrick-of-the-Jacob-Variety
  */
+
 
 /**
  * Does Player-y things ???
@@ -13,6 +15,12 @@ public class Player {
 	
 	/** Previous room of the player object. */
 	private static Room previousRoom;
+	
+	/** Player's maximum carry weight. */
+	private static double carryWeight = 5;
+	
+	/** This is a HashMap of items in the players inventory. */
+	private HashMap<String, Item> inventory = new HashMap<>();
 	
 	// Sets a starting room for the player object
 	public Player(Room startingRoom) {
@@ -30,10 +38,36 @@ public class Player {
 		return previousRoom;
 	}
 	
+	// Accessor function for getting specific items
+	public Item getItem(String name) {
+		return inventory.get(name);
+	}
+	
 	// Mutator function for player object
 	public void setRoom(Room newRoom) {
 		previousRoom = currentRoom;
 		currentRoom = newRoom;
+	}
+	
+	// A function that adds Items to inventory
+	public boolean addItem(Item newItem) {
+		boolean isSpace = false;
+		double currentWeight = 0;
+		for (Item item : inventory.values()) {
+			currentWeight += item.getWeight();
+		}
+		if (currentWeight + newItem.getWeight() > carryWeight) {
+			isSpace = false;
+		} else {
+			isSpace = true;
+			inventory.put(newItem.getName().toLowerCase(), newItem);
+		}
+		return isSpace;
+	}
+	
+	// A function that removes an Item from the inventory
+	public Item removeItem(String name) {
+		return inventory.remove(name);
 	}
 	
 }
