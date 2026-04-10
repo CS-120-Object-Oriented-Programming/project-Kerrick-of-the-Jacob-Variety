@@ -117,19 +117,10 @@ public class Game {
 
 			// Try to leave current.
 			Door doorway = null;
-			if (direction.equals("north")) {
-				doorway = currentPlayer.getRoom().getNorthExit();
+			if (currentPlayer.getRoom().contains(direction)) {
+				doorway = currentPlayer.getRoom().getExit(direction);
 			}
-			if (direction.equals("east")) {
-				doorway = currentPlayer.getRoom().getEastExit();
-			}
-			if (direction.equals("south")) {
-				doorway = currentPlayer.getRoom().getSouthExit();
-			}
-			if (direction.equals("west")) {
-				doorway = currentPlayer.getRoom().getWestExit();
-			}
-
+			
 			if (direction.equals("back")) {
 				back();
 			} else if (doorway == null) {

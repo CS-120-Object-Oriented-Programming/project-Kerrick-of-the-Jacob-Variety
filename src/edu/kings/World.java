@@ -57,51 +57,14 @@ public class World {
 	 *
 	 * @param from
 	 *            The room where the door originates.
-	 * @param north
+	 * @param to
 	 *            The room to the north of the originating room.
+	 * @param direction
+	 * 			  The name of the door.
 	 */
-	private void createNorthDoor(Room from, Room north) {
-		Door northDoor = new Door(north);
-		from.setNorthExit(northDoor);
-	}
-
-	/**
-	 * Helper method for creating doors between rooms.
-	 *
-	 * @param from
-	 *            The room where the door originates.
-	 * @param east
-	 *            The room to the east of the originating room.
-	 */
-	private void createEastDoor(Room from, Room east) {
-		Door eastDoor = new Door(east);
-		from.setEastExit(eastDoor);
-	}
-
-	/**
-	 * Helper method for creating doors between rooms.
-	 *
-	 * @param from
-	 *            The room where the door originates.
-	 * @param south
-	 *            The room to the south of the originating room.
-	 */
-	private void createSouthDoor(Room from, Room south) {
-		Door southDoor = new Door(south);
-		from.setSouthExit(southDoor);
-	}
-
-	/**
-	 * Helper method for creating doors between rooms.
-	 *
-	 * @param from
-	 *            The room where the door originates.
-	 * @param west
-	 *            The room to the west of the originating room.
-	 */
-	private void createWestDoor(Room from, Room west) {
-		Door westDoor = new Door(west);
-		from.setWestExit(westDoor);
+	private void createDoor(Room from, Room to, String direction) {
+		Door newDoor = new Door(to);
+		from.setExit(direction, newDoor);
 	}
 
 	/**
@@ -132,28 +95,28 @@ public class World {
 		this.addRoom(classroom);
 
 		// Creating all the doors between the rooms.
-		this.createSouthDoor(essef, outside);
-		this.createNorthDoor(outside, essef);
+		this.createDoor(essef, outside, "south");
+		this.createDoor(outside, essef, "north");
 
-		this.createEastDoor(campusCenter, outside);
-		this.createWestDoor(outside, campusCenter);
+		this.createDoor(campusCenter, outside, "east");
+		this.createDoor(outside, campusCenter, "west");
 
-		this.createEastDoor(outside, holyCross);
-		this.createWestDoor(holyCross, outside);
+		this.createDoor(outside, holyCross, "east");
+		this.createDoor(holyCross, outside, "west");
 
-		this.createSouthDoor(outside, admin);
-		this.createNorthDoor(admin, outside);
+		this.createDoor(outside, admin, "south");
+		this.createDoor(admin, outside, "north");
 
-		this.createEastDoor(admin, lab);
-		this.createWestDoor(lab, admin);
+		this.createDoor(admin, lab, "east");
+		this.createDoor(lab, admin, "west");
 
-		this.createSouthDoor(admin, janoskiOffice);
-		this.createNorthDoor(janoskiOffice, admin);
+		this.createDoor(admin, janoskiOffice, "south");
+		this.createDoor(janoskiOffice, admin, "north");
 
-		this.createWestDoor(admin, slivaOffice);
-		this.createEastDoor(slivaOffice, admin);
+		this.createDoor(admin, slivaOffice, "west");
+		this.createDoor(slivaOffice, admin, "east");
 
-		this.createSouthDoor(lab, classroom);
-		this.createNorthDoor(classroom, lab);
+		this.createDoor(lab, classroom, "south");
+		this.createDoor(classroom, lab, "north");
 	}
 }

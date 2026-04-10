@@ -1,4 +1,5 @@
 package edu.kings;
+import java.util.HashMap;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -22,14 +23,8 @@ public class Room {
 	/** The description of this room. */
 	private String description;
 
-	/** This room's north exit, null if none exits. */
-	private Door northExit;
-	/** This room's south exit, null if none exits. */
-	private Door southExit;
-	/** This room's east exit, null if none exits. */
-	private Door eastExit;
-	/** This room's west exit, null if none exits. */
-	private Door westExit;
+	/** This is a HashMap of exits for the room object. */
+	private HashMap<String, Door> doorways = new HashMap<>();
 
 	/**
 	 * Create a room described "description". Initially, it has no exits.
@@ -72,67 +67,39 @@ public class Room {
 	}
 	
 	/**
-	 * Returns the north exit that is in the room.
-	 * @return The north exit that is in the room.
-	 */
-	public Door getNorthExit() {
-		return northExit;
+	* Gets a door in a specified direction if it exists.
+	*
+	* @param direction  The direction of the exit.
+	* @return The door in the specified direction or null if it does not exist.
+	*/
+	public Door getExit(String direction) {
+		return doorways.get(direction);
+	}
+
+	/**
+	* Defines an exit from this room.
+	*
+	* @param direction The direction of the exit.
+	* @param neighbor The door in the given direction.
+	*/
+	public void setExit(String direction, Door neighbor) {
+		doorways.put(direction, neighbor);
 	}
 	
-	/**
-	 * Returns the east exit that is in the room.
-	 * @return The east exit that is in the room.
+	/** 
+	 * Returns whether or not an exit exists in dooways.
+	 * 
+	 * @param direction  The direction to be checked.
+	 * @return A true or false depending on if the exit exists
 	 */
-	public Door getEastExit() {
-		return eastExit;
-	}
-	
-	/**
-	 * Returns the south exit that is in the room.
-	 * @return The south exit that is in the room.
-	 */
-	public Door getSouthExit() {
-		return southExit;
-	}
-	
-	/**
-	 * Returns the west exit that is in the room.
-	 * @return The west exit that is in the room.
-	 */
-	public Door getWestExit() {
-		return westExit;
-	}
-	
-	/**
-	 * Sets the north exit to a new exit.
-	 * @param newNorthExit is used to set the north exit to a new exit.
-	 */
-	public void setNorthExit(Door newNorthExit) {
-		northExit = newNorthExit;
-	}
-	
-	/**
-	 * Sets the east exit to a new exit.
-	 * @param newEastExit is used to set the east exit to a new exit.
-	 */
-	public void setEastExit(Door newEastExit) {
-		eastExit = newEastExit;
-	}
-	
-	/**
-	 * Sets the south exit to a new exit.
-	 * @param newSouthExit is used to set the south exit to a new exit.
-	 */
-	public void setSouthExit(Door newSouthExit) {
-		southExit = newSouthExit;
-	}
-	
-	/**
-	 * Sets the west exit to a new exit.
-	 * @param newWestExit is used to set the west exit to a new exit.
-	 */
-	public void setWestExit(Door newWestExit) {
-		westExit = newWestExit;
+	public boolean contains(String direction) {
+		boolean tempval = false;
+		if (doorways.containsKey(direction)) {
+			tempval = true;
+		} else {
+			tempval = false;
+		}
+		return tempval;
 	}
 	
 	/**
@@ -146,18 +113,7 @@ public class Room {
 	*/
 	public String toString() {
 		String returnStr =  "\n " + name + ":" + "\nYou are " + getDescription() + "\nExits: ";
-		if (getNorthExit() != null) {
-			returnStr += "north ";
-		}
-		if (getEastExit() != null) {
-			returnStr += "east ";
-		}
-		if (getSouthExit() != null) {
-			returnStr += "south ";
-		}
-		if (getWestExit() != null) {
-			returnStr += "west ";
-		}
+		returnStr += doorways.keySet();
 		return returnStr + "\n";
 	}
 }
