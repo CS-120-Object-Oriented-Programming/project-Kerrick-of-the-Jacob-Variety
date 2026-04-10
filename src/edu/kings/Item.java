@@ -9,6 +9,8 @@ public class Item {
 	private int points;
 	/** Weight of the item. */
 	private double weight;
+	/** Whether or not the player knows about the item. */
+	private boolean isKnown;
 	
 	/**
 	 * Create an Item described "description".
@@ -18,12 +20,14 @@ public class Item {
 	 * @param description  The item's description.
 	 * @param points  The item's points.
 	 * @param weight  The item's weight.
+	 * @param isKnown  Whether or not the player starts knowing about the item.
 	 */
-	public Item (String name, String description, int points, double weight) {
+	public Item (String name, String description, int points, double weight, boolean isKnown) {
 		this.name = name;
 		this.description = description;
 		this.points = points;
 		this.weight = weight;
+		this.isKnown = isKnown;
 	}
 
 	/**
@@ -34,6 +38,15 @@ public class Item {
 	public String getName() {
 		return name;
 	}
+
+	/**
+	 * Returns the points of this item.
+	 *
+	 * @return The points of this item.
+	 */
+	public int getPoints() {
+		return points;
+	}
 	
 	/**
 	 * Returns the weight of this item.
@@ -42,6 +55,24 @@ public class Item {
 	 */
 	public double getWeight() {
 		return weight;
+	}
+	
+	/**
+	 * Returns whether or not the player knows of this item.
+	 *
+	 * @return Whether or not the player knows of this item.
+	 */
+	public boolean getIsKnown() {
+		return isKnown;
+	}
+	
+	/**
+	 * Defines whether or not the player knows about the item.
+	 * 
+	 * @param known
+	 */
+	public void setIsKnown(boolean known) {
+		isKnown = known;
 	}
 	
 	/**

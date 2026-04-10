@@ -22,10 +22,11 @@ public class Room {
 	private String name;
 	/** The description of this room. */
 	private String description;
-
 	/** This is a HashMap of exits for the room object. */
 	private HashMap<String, Door> doorways = new HashMap<>();
-
+	/** This is a HashMap of items for the room object. */
+	private HashMap<String, Item> items = new HashMap<>();
+	
 	/**
 	 * Create a room described "description". Initially, it has no exits.
 	 * "description" is something like "a kitchen" or "an open court yard".
@@ -75,6 +76,26 @@ public class Room {
 	public Door getExit(String direction) {
 		return doorways.get(direction);
 	}
+	
+	/**
+	* Gets a specific item if it exists.
+	*
+	* @param itemName  The name of the item.
+	* @return The specific item or null if it does not exist.
+	*/
+	public Item getItem(String itemName) {
+		return items.get(name);
+	}
+	
+	/**
+	 * Removes a specific item if it exists.
+	 * 
+	 * @param itemName  The name of the item.
+	 * @return The specific item that was removed or null if it does not exist.
+	 */
+	public Item removeItem(String itemName) {
+		return items.remove(name);
+	}
 
 	/**
 	* Defines an exit from this room.
@@ -84,6 +105,15 @@ public class Room {
 	*/
 	public void setExit(String direction, Door neighbor) {
 		doorways.put(direction, neighbor);
+	}
+
+	/**
+	* Defines an item from this room.
+	*
+	* @param item  The item being defined.
+	*/
+	public void addItem(Item item) {
+		items.put(item.getName().toLowerCase(), item);
 	}
 	
 	/** 
@@ -114,6 +144,11 @@ public class Room {
 	public String toString() {
 		String returnStr =  "\n " + name + ":" + "\nYou are " + getDescription() + "\nExits: ";
 		returnStr += doorways.keySet();
+		for (Item item: items.values()) {
+			if(item.getIsKnown()) {
+				returnStr += " " + item.getName();
+			}
+		}
 		return returnStr + "\n";
 	}
 }
