@@ -130,10 +130,10 @@ public class World {
 		this.createDoor(classroom, lab, "north");
 		
 		// Creating all the items in the rooms.
-		this.createItems(outside, new Item("Spikeball", "A spikeball used for a popular game in King's Court. This one must've rolled away.", 0, 0.1, true));
-		this.createItems(campusCenter, new Item("TV Remote", "The remote for the TV's in the campus center. I guess they just left it here on its own.", 0, 0.1, true));
-		this.createItems(admin, new Item("ID Card", "Your ID Card is here and ready for you. (I don't know where you get new ID's).", 0, 0.1, true));
-		this.createItems(lab, new Item("Laptop", "Your laptop. You apparently forgot it here. Lucky you no one else found it.", 0, 1, true));
-		this.createItems(classroom, new Item("Assignment", "Your assignment! Don't let Prof. Koscho find out you didn't care enough to at least throw it away.", 0, 0.1, true));
+		this.createItems(outside, new Item("Spikeball", "A spikeball used for a popular game in King's Court. This one must've rolled away.", 0, 0.1, true, false));
+		this.createItems(campusCenter, new Item("TV Remote", "The remote for the TV's in the campus center. I guess they just left it here on its own.", 0, 0.1, true, false));
+		this.createItems(admin, new Item("ID Card", "Your ID Card is here and ready for you. (I don't know where you get new ID's).", 0, 0.1, true, false));
+		this.createItems(lab, new Item("Laptop", "Your laptop. You apparently forgot it here. Lucky you no one else found it.", 0, 1, true, false));
+		this.createItems(classroom, new Item("Assignment", "Your assignment! Don't let Prof. Koscho find out you didn't care enough to at least throw it away.", 0, 0.1, true, false));
 	}
 }

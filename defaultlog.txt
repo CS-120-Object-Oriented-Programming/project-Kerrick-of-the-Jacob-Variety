@@ -7,32 +7,6 @@ Type 'help' if you need help.
  Outside:
 You are outside in the center of the King's College campus.
 Exits: [east, south, north, west] Spikeball
-> go west
-
- Campus Center:
-You are in the center of student activities on campus.
-Exits: [east] TV Remote
-> go east
-
- Outside:
-You are outside in the center of the King's College campus.
-Exits: [east, south, north, west] Spikeball
-> go east
-
- Holy Cross:
-You are at one of two main dormitories on campus.
-Exits: [west]
-> back
-
- Outside:
-You are outside in the center of the King's College campus.
-Exits: [east, south, north, west] Spikeball
-> go south
-
- Admin:
-You are in the oldest building on campus and home to the computer science department.
-Exits: [east, south, north, west] ID Card
-> examine id card
-ID Card: Your ID Card is here and ready for you. (I don't know where you get new ID's). (0.1lbs.)
-ID Card: Your ID Card is here and ready for you. (I don't know where you get new ID's). (0.1lbs.)
+> take spikeball
+Carrying too much.
 > 

@@ -248,6 +248,22 @@ public class Game {
 	}
 	
 	private void take(Command command) {
-		
+		if (!command.hasSecondWord()) {
+			Writer.println("Take what?");
+		} else {
+			String item = command.getRestOfLine();
+			
+			if (!currentPlayer.getRoom().containsItem(item)) {
+				Writer.println("No such item.");
+			} else if (currentPlayer.getRoom().getItem(item).getIsTooHeavy()) {
+				Writer.println("Too heavy to lift.");
+			} else if (!currentPlayer.addItem(currentPlayer.getRoom().getItem(item))) {
+				Writer.println("Carrying too much.");
+			} else {
+				currentPlayer.addItem(currentPlayer.getRoom().getItem(item));
+				currentPlayer.getRoom().removeItem(item);
+				Writer.println("You took the item.");
+			}
+		}
 	}
 }

@@ -11,6 +11,8 @@ public class Item {
 	private double weight;
 	/** Whether or not the player knows about the item. */
 	private boolean isKnown;
+	/** Whether or not the player can lift the item. */
+	private boolean isTooHeavy;
 	
 	/**
 	 * Create an Item described "description".
@@ -21,13 +23,15 @@ public class Item {
 	 * @param points  The item's points.
 	 * @param weight  The item's weight.
 	 * @param isKnown  Whether or not the player starts knowing about the item.
+	 * @param isTooHeavy  Whether or not the player can lift the item.
 	 */
-	public Item (String name, String description, int points, double weight, boolean isKnown) {
+	public Item (String name, String description, int points, double weight, boolean isKnown, boolean isTooHeavy) {
 		this.name = name;
 		this.description = description;
 		this.points = points;
 		this.weight = weight;
 		this.isKnown = isKnown;
+		this.isTooHeavy = isTooHeavy;
 	}
 
 	/**
@@ -64,6 +68,15 @@ public class Item {
 	 */
 	public boolean getIsKnown() {
 		return isKnown;
+	}
+	
+	/**
+	 * Returns whether or not the player can lift the item.
+	 *
+	 * @return Whether or not the player can lift the item.
+	 */
+	public boolean getIsTooHeavy() {
+		return isTooHeavy;
 	}
 	
 	/**
