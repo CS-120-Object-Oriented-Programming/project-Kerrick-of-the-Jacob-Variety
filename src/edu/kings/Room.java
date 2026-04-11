@@ -94,7 +94,7 @@ public class Room {
 	 * @return The specific item that was removed or null if it does not exist.
 	 */
 	public Item removeItem(String itemName) {
-		return items.remove(name);
+		return items.remove(itemName);
 	}
 
 	/**

@@ -307,6 +307,6 @@ public class Game {
 	 * Prints every item in the player's inventory.
 	 */
 	private void printInv() {
-		
+		Writer.print(currentPlayer.getInv());
 	}
 }

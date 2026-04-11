@@ -43,6 +43,20 @@ public class Player {
 		return inventory.get(name);
 	}
 	
+	// Returns the inventory in a printable way
+	public String getInv() {
+		String retVal = "";
+		if (inventory.isEmpty()) {
+			retVal += "Sorry, you don't have anything right now";
+		} else {
+			retVal += "Taking an inventory you find you have:";
+			for (Item item : inventory.values()) {
+				retVal += "\n - " + item.getName();
+			}
+		}
+		return retVal + "\n";
+	}
+	
 	// Mutator function for player object
 	public void setRoom(Room newRoom) {
 		previousRoom = currentRoom;
