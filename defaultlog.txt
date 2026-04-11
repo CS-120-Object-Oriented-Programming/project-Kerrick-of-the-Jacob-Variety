@@ -1,0 +1,67 @@
+
+Welcome to the Campus of Kings!
+Campus of Kings is a new, incredibly boring adventure game.
+Type 'help' if you need help.
+
+
+ Outside:
+You are outside in the center of the King's College campus.
+Exits: [east, south, north, west] Spikeball
+> take spikeball
+You took the item.
+> go south
+
+ Admin:
+You are in the oldest building on campus and home to the computer science department.
+Exits: [east, south, north, west] ID Card
+> take id card
+You took the item.
+> go east
+
+ Computer Lab:
+You are in the Computer Science and Math computing lab.
+Exits: [south, west] Laptop
+> take laptop
+You took the item.
+> go south
+
+ Classroom:
+You are in the classroom where the computer science classes are taught.
+Exits: [north] Assignment
+> take assignment
+You took the item.
+> go north
+
+ Computer Lab:
+You are in the Computer Science and Math computing lab.
+Exits: [south, west]
+> go west
+
+ Admin:
+You are in the oldest building on campus and home to the computer science department.
+Exits: [east, south, north, west]
+>  go north
+
+ Outside:
+You are outside in the center of the King's College campus.
+Exits: [east, south, north, west]
+> go west
+
+ Campus Center:
+You are in the center of student activities on campus.
+Exits: [east] TV Remote
+> take tv remote
+You took the item.
+> go east
+
+ Outside:
+You are outside in the center of the King's College campus.
+Exits: [east, south, north, west]
+> inventory
+Taking an inventory you find you have:
+ - ID Card
+ - Spikeball
+ - Assignment
+ - TV Remote
+ - Laptop
+> 

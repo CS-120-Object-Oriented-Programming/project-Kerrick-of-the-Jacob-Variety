@@ -51,57 +51,30 @@ public class World {
 	private void addRoom(Room theRoom) {
 		rooms.put(theRoom.getName().toLowerCase(), theRoom);
 	}
+	
+	/**
+	 * Helper method for creating an item.
+	 * 
+	 * @param theRoom  The Room the Item is being added to.
+	 * @param item  The Item being added to the Room.
+	 */
+	private void createItems(Room theRoom, Item item) {
+		theRoom.addItem(item);
+	}
 
 	/**
 	 * Helper method for creating doors between rooms.
 	 *
 	 * @param from
 	 *            The room where the door originates.
-	 * @param north
+	 * @param to
 	 *            The room to the north of the originating room.
+	 * @param direction
+	 * 			  The name of the door.
 	 */
-	private void createNorthDoor(Room from, Room north) {
-		Door northDoor = new Door(north);
-		from.northExit = northDoor;
-	}
-
-	/**
-	 * Helper method for creating doors between rooms.
-	 *
-	 * @param from
-	 *            The room where the door originates.
-	 * @param east
-	 *            The room to the east of the originating room.
-	 */
-	private void createEastDoor(Room from, Room east) {
-		Door eastDoor = new Door(east);
-		from.eastExit = eastDoor;
-	}
-
-	/**
-	 * Helper method for creating doors between rooms.
-	 *
-	 * @param from
-	 *            The room where the door originates.
-	 * @param south
-	 *            The room to the south of the originating room.
-	 */
-	private void createSouthDoor(Room from, Room south) {
-		Door southDoor = new Door(south);
-		from.southExit = southDoor;
-	}
-
-	/**
-	 * Helper method for creating doors between rooms.
-	 *
-	 * @param from
-	 *            The room where the door originates.
-	 * @param west
-	 *            The room to the west of the originating room.
-	 */
-	private void createWestDoor(Room from, Room west) {
-		Door westDoor = new Door(west);
-		from.westExit = westDoor;
+	private void createDoor(Room from, Room to, String direction) {
+		Door newDoor = new Door(to);
+		from.setExit(direction, newDoor);
 	}
 
 	/**
@@ -132,28 +105,35 @@ public class World {
 		this.addRoom(classroom);
 
 		// Creating all the doors between the rooms.
-		this.createSouthDoor(essef, outside);
-		this.createNorthDoor(outside, essef);
+		this.createDoor(essef, outside, "south");
+		this.createDoor(outside, essef, "north");
 
-		this.createEastDoor(campusCenter, outside);
-		this.createWestDoor(outside, campusCenter);
+		this.createDoor(campusCenter, outside, "east");
+		this.createDoor(outside, campusCenter, "west");
 
-		this.createEastDoor(outside, holyCross);
-		this.createWestDoor(holyCross, outside);
+		this.createDoor(outside, holyCross, "east");
+		this.createDoor(holyCross, outside, "west");
 
-		this.createSouthDoor(outside, admin);
-		this.createNorthDoor(admin, outside);
+		this.createDoor(outside, admin, "south");
+		this.createDoor(admin, outside, "north");
 
-		this.createEastDoor(admin, lab);
-		this.createWestDoor(lab, admin);
+		this.createDoor(admin, lab, "east");
+		this.createDoor(lab, admin, "west");
 
-		this.createSouthDoor(admin, janoskiOffice);
-		this.createNorthDoor(janoskiOffice, admin);
+		this.createDoor(admin, janoskiOffice, "south");
+		this.createDoor(janoskiOffice, admin, "north");
 
-		this.createWestDoor(admin, slivaOffice);
-		this.createEastDoor(slivaOffice, admin);
+		this.createDoor(admin, slivaOffice, "west");
+		this.createDoor(slivaOffice, admin, "east");
 
-		this.createSouthDoor(lab, classroom);
-		this.createNorthDoor(classroom, lab);
+		this.createDoor(lab, classroom, "south");
+		this.createDoor(classroom, lab, "north");
+		
+		// Creating all the items in the rooms.
+		this.createItems(outside, new Item("Spikeball", "A spikeball used for a popular game in King's Court. This one must've rolled away.", 0, 0.1, true, false));
+		this.createItems(campusCenter, new Item("TV Remote", "The remote for the TV's in the campus center. I guess they just left it here on its own.", 0, 0.1, true, false));
+		this.createItems(admin, new Item("ID Card", "Your ID Card is here and ready for you. (I don't know where you get new ID's).", 0, 0.1, true, false));
+		this.createItems(lab, new Item("Laptop", "Your laptop. You apparently forgot it here. Lucky you no one else found it.", 0, 1, true, false));
+		this.createItems(classroom, new Item("Assignment", "Your assignment! Don't let Prof. Koscho find out you didn't care enough to at least throw it away.", 0, 0.1, true, false));
 	}
 }
