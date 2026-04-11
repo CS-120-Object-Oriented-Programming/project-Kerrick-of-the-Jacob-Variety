@@ -8,5 +8,13 @@ Type 'help' if you need help.
 You are outside in the center of the King's College campus.
 Exits: [east, south, north, west] Spikeball
 > take spikeball
-Carrying too much.
+You took the item.
+> drop spikeball
+You dropped the item.
+> drop spikeball
+You don't have it.
+> take spikeball
+You took the item.
+> examine spikeball
+Spikeball: A spikeball used for a popular game in King's Court. This one must've rolled away. (0.1lbs.)
 > 

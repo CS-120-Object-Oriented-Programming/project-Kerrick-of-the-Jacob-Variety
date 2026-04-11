@@ -96,6 +96,12 @@ public class Game {
 			case CommandEnum.TAKE:
 				take(command);
 				break;
+			case CommandEnum.DROP:
+				drop(command);
+				break;
+			case CommandEnum.INVENTORY:
+				printInv();
+				break;
 			default:
 				Writer.println(commandWord + " is not implemented yet!");
 			}
@@ -223,7 +229,7 @@ public class Game {
 	}
 	
 	/**
-	 * Try to go to one direction. If there is an exit, enter the new room,
+	 * Try to go to examine an item. If there is an item, print the description,
 	 * otherwise print an error message.
 	 *
 	 * @param command
@@ -247,6 +253,13 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Try to take an item. If there is an item, take the item,
+	 * otherwise print an error message.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
 	private void take(Command command) {
 		if (!command.hasSecondWord()) {
 			Writer.println("Take what?");
@@ -265,5 +278,35 @@ public class Game {
 				Writer.println("You took the item.");
 			}
 		}
+	}
+	
+	/**
+	 * Try to go to drop an item. If there is an item, drop the item,
+	 * otherwise print an error message.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
+	private void drop(Command command) {
+		if (!command.hasSecondWord()) {
+			Writer.println("Which item?");
+		} else {
+			String item = command.getRestOfLine();
+			
+			if (!currentPlayer.containsItem(item)) {
+				Writer.println("You don't have it.");
+			} else {
+				currentPlayer.getRoom().addItem(currentPlayer.getItem(item));
+				currentPlayer.removeItem(item);
+				Writer.println("You dropped the item.");
+			}
+		}
+	}
+	
+	/**
+	 * Prints every item in the player's inventory.
+	 */
+	private void printInv() {
+		
 	}
 }
