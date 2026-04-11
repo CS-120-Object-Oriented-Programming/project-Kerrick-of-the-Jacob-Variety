@@ -90,6 +90,12 @@ public class Game {
 			case CommandEnum.BACK:
 				back();
 				break;
+			case CommandEnum.EXAMINE:
+				examine(command);
+				break;
+			case CommandEnum.TAKE:
+				take(command);
+				break;
 			default:
 				Writer.println(commandWord + " is not implemented yet!");
 			}
@@ -117,7 +123,7 @@ public class Game {
 
 			// Try to leave current.
 			Door doorway = null;
-			if (currentPlayer.getRoom().contains(direction)) {
+			if (currentPlayer.getRoom().containsExit(direction)) {
 				doorway = currentPlayer.getRoom().getExit(direction);
 			}
 			
@@ -214,5 +220,34 @@ public class Game {
 		turns++;
 		currentPlayer.setRoom(currentPlayer.getPreviousRoom());
 		printLocationInformation();
+	}
+	
+	/**
+	 * Try to go to one direction. If there is an exit, enter the new room,
+	 * otherwise print an error message.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
+	private void examine(Command command) {
+		if (!command.hasSecondWord()) {
+			Writer.println("Which item?");
+		} else {
+			String item = command.getRestOfLine();
+
+			if (!(currentPlayer.getRoom().containsItem(item) || currentPlayer.containsItem(item))) {
+				Writer.println("No such item.");
+			} else {
+				if (currentPlayer.getRoom().containsItem(item)) {
+					Writer.println(currentPlayer.getRoom().getItem(item).toString());
+				} else {
+					Writer.println(currentPlayer.getItem(item).toString());
+				}
+			}
+		}
+	}
+	
+	private void take(Command command) {
+		
 	}
 }

@@ -84,7 +84,7 @@ public class Room {
 	* @return The specific item or null if it does not exist.
 	*/
 	public Item getItem(String itemName) {
-		return items.get(name);
+		return items.get(itemName);
 	}
 	
 	/**
@@ -117,14 +117,30 @@ public class Room {
 	}
 	
 	/** 
-	 * Returns whether or not an exit exists in dooways.
+	 * Returns whether or not an exit exists in doorways.
 	 * 
 	 * @param direction  The direction to be checked.
 	 * @return A true or false depending on if the exit exists
 	 */
-	public boolean contains(String direction) {
+	public boolean containsExit(String direction) {
 		boolean tempval = false;
 		if (doorways.containsKey(direction)) {
+			tempval = true;
+		} else {
+			tempval = false;
+		}
+		return tempval;
+	}
+	
+	/** 
+	 * Returns whether or not an item exists in items.
+	 * 
+	 * @param item  The item to be checked.
+	 * @return A true or false depending on if the item exists
+	 */
+	public boolean containsItem(String item) {
+		boolean tempval = false;
+		if (items.containsKey(item)) {
 			tempval = true;
 		} else {
 			tempval = false;

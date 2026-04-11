@@ -83,6 +83,6 @@ public class Item {
 	 * @return A string representing all the details of an item.
 	*/
 	public String toString() {
-		return name + ": " + description + ". (" + weight + "lbs.";
+		return name + ": " + description + " (" + weight + "lbs.)";
 	}
 }

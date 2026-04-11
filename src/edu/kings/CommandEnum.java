@@ -14,7 +14,15 @@ public enum CommandEnum {
 	/** The Status Command. */
 	STATUS("status"),
 	/** The Back Command. */
-	BACK("back");
+	BACK("back"),
+	/** The Examine Command. */
+	EXAMINE("examine"),
+	/** The Take Command. */
+	TAKE("take"),
+	/** The Drop Command. */
+	DROP("drop"),
+	/** The Inventory Command. */
+	INVENTORY("inventory");
 	
 	/** A string for all Commands. */
 	private final String command;

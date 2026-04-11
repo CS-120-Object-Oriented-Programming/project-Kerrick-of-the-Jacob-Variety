@@ -70,4 +70,20 @@ public class Player {
 		return inventory.remove(name);
 	}
 	
+	/** 
+	 * Returns whether or not an item exists in items.
+	 * 
+	 * @param item  The item to be checked.
+	 * @return A true or false depending on if the item exists
+	 */
+	public boolean containsItem(String item) {
+		boolean tempval = false;
+		if (inventory.containsKey(item)) {
+			tempval = true;
+		} else {
+			tempval = false;
+		}
+		return tempval;
+	}
+	
 }
