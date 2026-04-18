@@ -1,0 +1,22 @@
+
+Welcome to the Campus of Kings!
+Campus of Kings is a new, incredibly boring adventure game.
+Type 'help' if you need help.
+
+
+ Outside:
+You are outside in the center of the King's College campus.
+Exits: [east, south, north, west] Spikeball Backpack Essef Key
+> take backpack
+You took the item.
+> help
+You are lost. You are alone. You wander
+around at the university.
+
+Your command words are:
+go quit help look status back examine take drop inventory unlock lock unpack pack 
+> examine backpack
+Backpack: A backpack you can put stuff in. (1.0lbs.)
+Sorry, Backpack doesn't have anything in it right now
+
+> 
