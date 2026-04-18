@@ -129,12 +129,14 @@ public class Game {
 
 			// Try to leave current.
 			Door doorway = null;
-			if (currentPlayer.getRoom().containsExit(direction)) {
+			if (currentPlayer.getRoom().containsExit(direction) && !currentPlayer.getRoom().getExit(direction).isLocked()) {
 				doorway = currentPlayer.getRoom().getExit(direction);
 			}
 			
 			if (direction.equals("back")) {
 				back();
+			} else if (doorway == null && currentPlayer.getRoom().getExit(direction).isLocked()) {
+				Writer.println("The door is locked!");
 			} else if (doorway == null) {
 				Writer.println("There is no door!");
 			} else {
