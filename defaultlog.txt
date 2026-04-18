@@ -6,20 +6,17 @@ Type 'help' if you need help.
 
  Outside:
 You are outside in the center of the King's College campus.
-Exits: [east, south, north, west] Spikeball Essef Key
-> take essef key
+Exits: [east, south, north, west] Spikeball Backpack Essef Key
+> take backpack
 You took the item.
-> unlock north
-What key would you like to use?
-> essef key
-You unlocked it!
-> lock north
-What key would you like to use?
-> essef key
-You locked it!
-> go east
+> help
+You are lost. You are alone. You wander
+around at the university.
 
- Holy Cross:
-You are at one of two main dormitories on campus.
-Exits: [west]
+Your command words are:
+go quit help look status back examine take drop inventory unlock lock unpack pack 
+> examine backpack
+Backpack: A backpack you can put stuff in. (1.0lbs.)
+Sorry, Backpack doesn't have anything in it right now
+
 > 
