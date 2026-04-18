@@ -18,8 +18,8 @@ public class Door {
 
 	/** The room that this door leads to. */
 	private Room destination;
-	/** Whether this door is locked. */
-	private boolean locked;
+	/** Whether a key for this door if it is locked. */
+	private Item key = null;
 
 	/**
 	 * Constructor for the Door class.
@@ -27,7 +27,6 @@ public class Door {
 	 */
 	public Door(Room destination) {
 		this.destination = destination;
-		this.locked = false;
 	}
 
 	/**
@@ -43,14 +42,26 @@ public class Door {
 	 * @return Whether this door is locked
 	 */
 	public boolean isLocked() {
-		return locked;
+		return !(key == null);
 	}
 
 	/**
-	 * A setter for whether this door is locked.
-	 * @param locked Whether this door is locked.
+	 * A method to unlock this door if it is locked.
+	 * @param key is used to unlock this door if it is locked.
 	 */
-	public void setLocked(boolean locked) {
-		this.locked = locked;
+	public void useKey(Item key) {
+		if (this.key == key) {
+			this.key = null;
+		} else {
+			Writer.println("This is not the right key");
+		}
+	}
+	
+	/**
+	 * A setter to assign a key to a door.
+	 * @param key is used to be assigned to a door.
+	 */
+	public void setKey(Item key) {
+		this.key = key;
 	}
 }
