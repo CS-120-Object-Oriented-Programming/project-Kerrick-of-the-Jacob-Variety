@@ -69,9 +69,9 @@ public class World {
 	 * @param item  The Item being added to the Room.
 	 * @param direction The direction of a locked door.
 	 */
-	private void createItems(Room theRoom, Item item, String direction) {
+	private void createItems(Room theRoom, Item item, Room lockedRoom, String direction) {
 		theRoom.addItem(item);
-		theRoom.getExit(direction).setKey(item);
+		lockedRoom.getExit(direction).setKey(item);
 	}
 
 	/**
@@ -147,6 +147,6 @@ public class World {
 		this.createItems(admin, new Item("ID Card", "Your ID Card is here and ready for you. (I don't know where you get new ID's).", 0, 0.1, true, false));
 		this.createItems(lab, new Item("Laptop", "Your laptop. You apparently forgot it here. Lucky you no one else found it.", 0, 1, true, false));
 		this.createItems(classroom, new Item("Assignment", "Your assignment! Don't let Prof. Koscho find out you didn't care enough to at least throw it away.", 0, 0.1, true, false));
-		this.createItems(outside, new Item("Essef Key", "The key you need to get into essef", 0, 0.1, true, false), "north");
+		this.createItems(outside, new Item("Essef Key", "The key you need to get into essef", 0, 0.1, true, false),outside, "north");
 	}
 }
