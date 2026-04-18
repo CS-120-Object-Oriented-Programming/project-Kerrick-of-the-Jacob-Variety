@@ -22,7 +22,15 @@ public enum CommandEnum {
 	/** The Drop Command. */
 	DROP("drop"),
 	/** The Inventory Command. */
-	INVENTORY("inventory");
+	INVENTORY("inventory"),
+	/** The Unlock command. */
+	UNLOCK("unlock"),
+	/** The Lock command. */
+	LOCK("lock"),
+	/** The Unpack command. */
+	UNPACK("unpack"),
+	/** The Pack command. */
+	PACK("pack");
 	
 	/** A string for all Commands. */
 	private final String command;

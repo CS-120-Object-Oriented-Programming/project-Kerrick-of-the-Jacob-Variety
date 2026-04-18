@@ -20,6 +20,8 @@ public class Door {
 	private Room destination;
 	/** Whether a key for this door if it is locked. */
 	private Item key = null;
+	/** Whether the door is locked or not. */
+	private boolean locked = false;
 
 	/**
 	 * Constructor for the Door class.
@@ -42,7 +44,22 @@ public class Door {
 	 * @return Whether this door is locked
 	 */
 	public boolean isLocked() {
-		return !(key == null);
+		return locked;
+	}
+	
+	/**
+	 * A getter for the key used to unlock the door.
+	 * @return The key for the door.
+	 */
+	public Item getKey() {
+		return key;
+	}
+	
+	/**
+	 * A getter for if there is a key at all for the door.
+	 */
+	public boolean hasKey() {
+		return (key != null);
 	}
 
 	/**
@@ -51,9 +68,9 @@ public class Door {
 	 */
 	public void useKey(Item key) {
 		if (this.key == key) {
-			this.key = null;
+			this.locked = false;
 		} else {
-			Writer.println("This is not the right key");
+			Writer.println("This is not the right key.");
 		}
 	}
 	
@@ -63,5 +80,13 @@ public class Door {
 	 */
 	public void setKey(Item key) {
 		this.key = key;
+		this.locked = true;
+	}
+	
+	/** 
+	 * A setter to lock the door.
+	 */
+	public void lock() {
+		locked = true;
 	}
 }

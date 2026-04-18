@@ -102,6 +102,18 @@ public class Game {
 			case CommandEnum.INVENTORY:
 				printInv();
 				break;
+			case CommandEnum.UNLOCK:
+				unlock(command);
+				break;
+			case CommandEnum.LOCK:
+				lock(command);
+				break;
+			case CommandEnum.UNPACK:
+				unpack();
+				break;
+			case CommandEnum.PACK:
+				pack();
+				break;
 			default:
 				Writer.println(commandWord + " is not implemented yet!");
 			}
@@ -310,5 +322,95 @@ public class Game {
 	 */
 	private void printInv() {
 		Writer.print(currentPlayer.getInv());
+	}
+	
+	/**
+	 * Unlocks a specific exit.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
+	private void unlock(Command command) {
+		if (!command.hasSecondWord()) {
+			// if there is no second word, we don't know what to unlock...
+			Writer.println("Unlock what?");
+		} else {
+			String direction = command.getRestOfLine();
+			if (currentPlayer.getRoom().containsExit(direction)) {
+				Door exit = currentPlayer.getRoom().getExit(direction);
+				if (exit.isLocked()) {
+					if (currentPlayer.containsItem(exit.getKey().getName().toLowerCase())) {
+						Writer.print("What key would you like to use?\n> ");
+						String key = Reader.getResponse();
+						if (key.equals(exit.getKey().getName().toLowerCase())) {
+							exit.useKey(currentPlayer.getItem(key));
+							Writer.println("You unlocked it!");
+						} else {
+							Writer.println("That doesn't fit.");
+						}
+					} else {
+						Writer.println("You don't have the right key.");
+					}
+				} else {
+					Writer.println("Door is not locked.");
+				}
+			} else {
+				Writer.println("There is no door!");
+			}
+		}
+	}
+	
+	/**
+	 * Locks a specific exit.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
+	private void lock(Command command) {
+		if (!command.hasSecondWord()) {
+			// if there is no second word, we don't know what to lock...
+			Writer.println("Lock what?");
+		} else {
+			String direction = command.getRestOfLine();
+			if (currentPlayer.getRoom().containsExit(direction)) {
+				Door exit = currentPlayer.getRoom().getExit(direction);
+				if (!exit.isLocked()) {
+					if (exit.hasKey()) {
+						if (currentPlayer.containsItem(exit.getKey().getName().toLowerCase())) {
+							Writer.print("What key would you like to use?\n> ");
+							String key = Reader.getResponse();
+							if (key.equals(exit.getKey().getName().toLowerCase())) {
+								exit.lock();
+								Writer.println("You locked it!");
+							} else {
+								Writer.println("That doesn't fit.");
+							}
+						} else {
+							Writer.println("You do not have the key.");
+						}
+					} else {
+						Writer.println("Door cannot be locked.");
+					}
+				} else {
+					Writer.println("Door is already locked.");
+				}
+			} else {
+				Writer.println("There is no door!");
+			}
+		}
+	}
+	
+	/**
+	 * Prints every item in the player's inventory.
+	 */
+	private void unpack() {
+		
+	}
+	
+	/**
+	 * Prints every item in the player's inventory.
+	 */
+	private void pack() {
+		
 	}
 }
