@@ -109,10 +109,10 @@ public class Game {
 				lock(command);
 				break;
 			case CommandEnum.UNPACK:
-				unpack();
+				unpack(command);
 				break;
 			case CommandEnum.PACK:
-				pack();
+				pack(command);
 				break;
 			default:
 				Writer.println(commandWord + " is not implemented yet!");
@@ -284,7 +284,7 @@ public class Game {
 				Writer.println("No such item.");
 			} else if (currentPlayer.getRoom().getItem(item).getIsTooHeavy()) {
 				Writer.println("Too heavy to lift.");
-			} else if (!currentPlayer.addItem(currentPlayer.getRoom().getItem(item))) {
+			} else if (currentPlayer.isOverWeight(currentPlayer.getRoom().getItem(item))) {
 				Writer.println("Carrying too much.");
 			} else {
 				currentPlayer.addItem(currentPlayer.getRoom().getItem(item));
@@ -401,16 +401,103 @@ public class Game {
 	}
 	
 	/**
-	 * Prints every item in the player's inventory.
+	 * Unpacks an Item from a container.
+	 *
+	 * @param command
+	 *            The command to be processed.
 	 */
-	private void unpack() {
-		
+	private void unpack(Command command) {
+		if (!command.hasSecondWord()) {
+			// if there is no second word, we don't know what to unpack...
+			Writer.println("Unpack what?");
+		} else {
+			String item = command.getRestOfLine();
+			if (!(currentPlayer.containsItem(item) || currentPlayer.getRoom().containsItem(item))) {
+				Writer.println("You don't see it.");
+			} else {
+				if (currentPlayer.getItem(item) instanceof Container || currentPlayer.getRoom().getItem(item) instanceof Container) {
+					Container container = null;
+					if (currentPlayer.getItem(item) instanceof Container) {
+						container = (Container) currentPlayer.getItem(item);
+					} else if (currentPlayer.getRoom().getItem(item) instanceof Container) {
+						container = (Container) currentPlayer.getRoom().getItem(item);
+					}
+					if (container.isEmpty()) {
+						Writer.println("The container is empty.");
+					} else {
+						Writer.print("What item would you like to unpack?\n> ");
+						String key = Reader.getResponse();
+						if (container.getItem(key) == null) {
+							Writer.println("You don't find it.");
+						} else {
+							if (currentPlayer.isOverWeight(container.getItem(key)) && !currentPlayer.containsItem(item)) {
+								Writer.println("You are already carrying too much!");
+							} else {
+								currentPlayer.addItem(container.removeItem(key));
+								Writer.println("You unpack it.");
+							}
+						}
+					}
+				} else {
+					Writer.println("That's not a container!");
+				}
+			}
+		}
 	}
 	
 	/**
-	 * Prints every item in the player's inventory.
+	 * Packs an Item from a container.
+	 *
+	 * @param command
+	 *            The command to be processed.
 	 */
-	private void pack() {
-		
+	private void pack(Command command) {
+		if (!command.hasSecondWord()) {
+			// if there is no second word, we don't know what to unpack...
+			Writer.println("Pack what?");
+		} else {
+			String item = command.getRestOfLine();
+			if (!(currentPlayer.containsItem(item) || currentPlayer.getRoom().containsItem(item))) {
+				Writer.println("You don't have it.");
+			} else {
+				Item packingItem = null;
+				if (currentPlayer.containsItem(item)) {
+					packingItem = currentPlayer.getItem(item);
+				} else if (currentPlayer.getRoom().containsItem(item)) {
+					packingItem = currentPlayer.getRoom().getItem(item);
+				}
+				if (packingItem.getIsTooHeavy()) {
+					Writer.println("Too heavy.");
+				} else {
+					Writer.print("What container would you like to put it in?\n> ");
+					String key = Reader.getResponse();
+					if (!(currentPlayer.containsItem(key) || currentPlayer.getRoom().containsItem(key))) {
+						Writer.println("You don't see the container.");
+					} else {
+						if (currentPlayer.getItem(key) instanceof Container || currentPlayer.getRoom().getItem(key) instanceof Container) {
+							Container container = null;
+							if (currentPlayer.getItem(key) instanceof Container) {
+								container = (Container) currentPlayer.getItem(key);
+							} else if (currentPlayer.getRoom().getItem(key) instanceof Container) {
+								container = (Container) currentPlayer.getRoom().getItem(key);
+							}
+							if (!currentPlayer.containsItem(item) && currentPlayer.isOverWeight(packingItem) && currentPlayer.containsItem(key)) {
+								Writer.println("Carrying too much.");
+							} else {
+								if (currentPlayer.containsItem(item)) {
+									container.addItem(currentPlayer.removeItem(item));
+								} else if (currentPlayer.getRoom().containsItem(item)) {
+									container.addItem(currentPlayer.getRoom().removeItem(item));
+								}
+								Writer.println("You packed it!");
+							}
+						}
+						else {
+							Writer.println("That's not a container!");
+						}
+					}
+				}
+			}
+		}
 	}
 }

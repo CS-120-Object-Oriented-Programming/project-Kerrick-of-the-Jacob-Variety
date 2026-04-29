@@ -39,6 +39,11 @@ public class Container extends Item {
 		return inventory.get(name);
 	}
 	
+	//Accessor function for getting whether or not the container is empty or not
+	public boolean isEmpty() {
+		return inventory.isEmpty();
+	}
+	
 	// Returns the inventory in a printable way
 	public String getInv() {
 		String retVal = "";

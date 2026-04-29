@@ -64,17 +64,23 @@ public class Player {
 	}
 	
 	// A function that adds Items to inventory
-	public boolean addItem(Item newItem) {
-		boolean isSpace = false;
+	public void addItem(Item newItem) {
+		if (!isOverWeight(newItem)) {
+			inventory.put(newItem.getName().toLowerCase(), newItem);
+		}
+	}
+	
+	// A function that returns whether or not adding an item is too heavy
+	public boolean isOverWeight(Item newItem) {
+		boolean isSpace = true;
 		double currentWeight = 0;
 		for (Item item : inventory.values()) {
 			currentWeight += item.getWeight();
 		}
 		if (currentWeight + newItem.getWeight() > carryWeight) {
-			isSpace = false;
-		} else {
 			isSpace = true;
-			inventory.put(newItem.getName().toLowerCase(), newItem);
+		} else {
+			isSpace = false;
 		}
 		return isSpace;
 	}
