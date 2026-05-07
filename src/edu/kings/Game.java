@@ -114,6 +114,9 @@ public class Game {
 			case CommandEnum.PACK:
 				pack(command);
 				break;
+			case CommandEnum.FOLLOWERS:
+				Writer.println(currentPlayer.myFollowers());
+				break;
 			default:
 				Writer.println(commandWord + " is not implemented yet!");
 			}

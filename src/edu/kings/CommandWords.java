@@ -14,7 +14,7 @@ package edu.kings;
 
 public class CommandWords {
 	/** A constant array that holds all valid command words. */
-	private static CommandEnum[] validCommands = {CommandEnum.GO, CommandEnum.QUIT, CommandEnum.HELP, CommandEnum.LOOK, CommandEnum.STATUS, CommandEnum.BACK, CommandEnum.EXAMINE, CommandEnum.TAKE, CommandEnum.DROP, CommandEnum.INVENTORY, CommandEnum.UNLOCK, CommandEnum.LOCK, CommandEnum.UNPACK, CommandEnum.PACK };
+	private static CommandEnum[] validCommands = {CommandEnum.GO, CommandEnum.QUIT, CommandEnum.HELP, CommandEnum.LOOK, CommandEnum.STATUS, CommandEnum.BACK, CommandEnum.EXAMINE, CommandEnum.TAKE, CommandEnum.DROP, CommandEnum.INVENTORY, CommandEnum.UNLOCK, CommandEnum.LOCK, CommandEnum.UNPACK, CommandEnum.PACK, CommandEnum.FOLLOWERS};
 
 	/**
 	 * Check whether a given String is a valid command word.
@@ -87,6 +87,9 @@ public class CommandWords {
 			break;
 		case "pack":
 			retval = CommandEnum.PACK;
+			break;
+		case "followers":
+			retval = CommandEnum.FOLLOWERS;
 			break;
 			default:
 		}

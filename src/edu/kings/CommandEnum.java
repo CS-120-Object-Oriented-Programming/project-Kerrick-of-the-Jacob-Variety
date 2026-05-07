@@ -30,7 +30,9 @@ public enum CommandEnum {
 	/** The Unpack command. */
 	UNPACK("unpack"),
 	/** The Pack command. */
-	PACK("pack");
+	PACK("pack"),
+	/** The Followers command. */
+	FOLLOWERS("followers");
 	
 	/** A string for all Commands. */
 	private final String command;

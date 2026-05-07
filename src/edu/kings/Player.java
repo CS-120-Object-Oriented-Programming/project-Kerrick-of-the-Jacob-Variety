@@ -1,5 +1,6 @@
 package edu.kings;
 import java.util.HashMap;
+import java.util.ArrayList;
 /**
  * @author Kerrick-of-the-Jacob-Variety
  */
@@ -21,6 +22,9 @@ public class Player {
 	
 	/** This is a HashMap of items in the players inventory. */
 	private HashMap<String, Item> inventory = new HashMap<>();
+	
+	/** This is a HashMap of NPC's following the player. */
+	private HashMap<String, Item> followers = new HashMap<>();
 	
 	// Sets a starting room for the player object
 	public Player(Room startingRoom) {
@@ -65,8 +69,10 @@ public class Player {
 	
 	// A function that adds Items to inventory
 	public void addItem(Item newItem) {
-		if (!isOverWeight(newItem)) {
+		if (!isOverWeight(newItem) && !(newItem instanceof NPC)) {
 			inventory.put(newItem.getName().toLowerCase(), newItem);
+		} else if (newItem instanceof NPC) {
+			followers.put(newItem.getName().toLowerCase(), newItem);
 		}
 	}
 	
@@ -106,4 +112,26 @@ public class Player {
 		return tempval;
 	}
 	
+	/** 
+	 * Returns all of the NPC's following the player.
+	 * 
+	 * @return all of the NPC's following the player.
+	 */
+	public String myFollowers() {
+		String following = "Currently; ";
+		if (followers.isEmpty()) {
+			following += "nobody is following you.";
+		} else if (followers.size() == 1) {
+			following += followers.get(followers.keySet().iterator().next()).getName() + " is following you";
+		} else {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			ArrayList<Item> theFollowing = new ArrayList(followers.values());
+			following += theFollowing.get(0);
+			for (int ii = 1; ii < theFollowing.size(); ii++) {
+				following += " & " + theFollowing.get(ii);
+			}
+			following += " are following you.";
+		}
+		return following;
+	}
 }
