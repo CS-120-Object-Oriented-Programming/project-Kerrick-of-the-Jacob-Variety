@@ -26,6 +26,7 @@ public class Container extends Item {
 	 *
 	 * @return The weight of this item and its contents.
 	 */
+	@Override
 	public double getWeight() {
 		double tempVal = super.getWeight();
 		for (Item item : inventory.values()) {

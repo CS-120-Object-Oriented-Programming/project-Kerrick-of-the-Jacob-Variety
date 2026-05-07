@@ -32,7 +32,7 @@ public class Game {
 	public Game() {
 		world = new World();
 		// set the starting room
-		currentPlayer = new Player(world.getRoom("outside"));
+		currentPlayer = new Player(world.getRoom("knotted place"));
 	}
 
 	/**

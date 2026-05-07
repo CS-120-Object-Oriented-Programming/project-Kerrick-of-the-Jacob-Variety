@@ -4,21 +4,7 @@ Campus of Kings is a new, incredibly boring adventure game.
 Type 'help' if you need help.
 
 
- Outside:
-You are outside in the center of the King's College campus.
-Exits: [east, south, north, west] Spikeball Backpack Essef Key
-> take backpack
-You took the item.
-> pack spikeball
-What container would you like to put it in?
-> backpack
-You packed it!
-> unpack backpack
-What item would you like to unpack?
-> spikeball
-You unpack it.
-> inventory
-Taking an inventory you find you have:
- - Spikeball
- - Backpack
+ Knotted Place:
+You are somewhere in the middle of the woods with knots tied everywhere. A boy scout may be nearby.
+Exits: []
 > 

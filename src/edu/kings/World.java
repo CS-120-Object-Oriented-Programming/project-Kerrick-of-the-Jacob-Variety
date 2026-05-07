@@ -96,6 +96,24 @@ public class World {
 	 */
 	private void createRooms() {
 		// Creating all the rooms.
+		Room start = new Room("Start", "at the place where it all began, some might even say the origin point.");
+		Room shore = new Room("Shore", "at a shore, it is really quiet and peaceful and has lots of space.");
+		Room lookout = new Room("Lookout", "on top of a tall hill and can see the whole island from here. This might be a good place to stargaze");
+		Room lumber = new Room("Lumber", "in a lumber yard. There is plenty of cut-down trees waiting to be chopped up.");
+		Room tools = new Room("Tools", "in a place that seems to once have held tons of survival tools.");
+		Room tailors = new Room("Tailor's", "somewhere that looks like a well known tailor would hide.");
+		Room bush = new Room("Bush", "in a dense bush but you can't see if anything is past this.");
+		Room secret = new Room("Secret", "in a secret location only known by Dave, until now have fun with winning every hide and seek from now on.");
+		Room knottedPlace = new Room("Knotted Place", "somewhere in the middle of the woods with knots tied everywhere. A boy scout may be nearby.");
+		Room ropes = new Room("Ropes", "in an area where plenty of ropes are ... IF THEY WERE STILL HERE!!");
+		Room tightrope = new Room("Tightrope", "looking at a precarious tightrope and you don't think it will hold up too much weight.");
+		Room cliff = new Room("Cliff", "on a precarious cliff, it looks like you can mount a mirror here for some reason.");
+		Room daves = new Room("Dave's House", "staring at a rickety old house and it looks abandoned until someone greets you.");
+		Room chute = new Room("Chute", "in a suddenly darker part of the forest, which makes no sense, until you look up and see a parachute dangling in the canopy.");
+		Room jackie = new Room("Jackie", "in a place with a lot of poor attempts at making an axe and a lot of failed tree cuts, there may be a lumberjack nearby.");
+		Room bridge = new Room("Bridge", "about to cross an old stone bridge, the ones that have a troll in the movies.");
+		Room helicopter = new Room ("Helicopter", "next to a helicopter, you might be able to leave on it.");
+		
 		Room outside = new Room("Outside", "outside in the center of the King's College campus.");
 		Room holyCross = new Room("Holy Cross", "at one of two main dormitories on campus.");
 		Room essef = new Room("Essef", "at the other main dormitory on campus.");
@@ -107,6 +125,24 @@ public class World {
 		Room classroom = new Room("Classroom", "in the classroom where the computer science classes are taught.");
 
 		// Adding all the rooms to the world.
+		this.addRoom(start);
+		this.addRoom(shore);
+		this.addRoom(lookout);
+		this.addRoom(lumber);
+		this.addRoom(tools);
+		this.addRoom(tailors);
+		this.addRoom(bush);
+		this.addRoom(secret);
+		this.addRoom(knottedPlace);
+		this.addRoom(ropes);
+		this.addRoom(tightrope);
+		this.addRoom(cliff);
+		this.addRoom(daves);
+		this.addRoom(chute);
+		this.addRoom(jackie);
+		this.addRoom(bridge);
+		this.addRoom(helicopter);
+		
 		this.addRoom(outside);
 		this.addRoom(holyCross);
 		this.addRoom(essef);
