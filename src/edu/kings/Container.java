@@ -4,18 +4,18 @@ import java.util.HashMap;
 
 public class Container extends Item {
 	/** A hashmap for containing items. */
-	private HashMap<String, Item> inventory = new HashMap<>();
+	protected HashMap<String, Item> inventory = new HashMap<>();
 	
 	/**
-	 * Create an Item described "description".
+	 * Create an Container described "description".
 	 * "description" is something like "a shiny axe" or "a big string telescope".
 	 *
-	 * @param name  The item's name.
-	 * @param description  The item's description.
-	 * @param points  The item's points.
-	 * @param weight  The item's weight.
-	 * @param isKnown  Whether or not the player starts knowing about the item.
-	 * @param isTooHeavy  Whether or not the player can lift the item.
+	 * @param name  The container's name.
+	 * @param description  The container's description.
+	 * @param points  The container's points.
+	 * @param weight  The container's weight.
+	 * @param isKnown  Whether or not the player starts knowing about the container.
+	 * @param isTooHeavy  Whether or not the player can lift the container.
 	 */
 	public Container (String name, String description, int points, double weight, boolean isKnown, boolean isTooHeavy) {
 		super(name, description, points, weight, isKnown, isTooHeavy);

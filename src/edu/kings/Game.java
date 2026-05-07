@@ -415,7 +415,7 @@ public class Game {
 			if (!(currentPlayer.containsItem(item) || currentPlayer.getRoom().containsItem(item))) {
 				Writer.println("You don't see it.");
 			} else {
-				if (currentPlayer.getItem(item) instanceof Container || currentPlayer.getRoom().getItem(item) instanceof Container) {
+				if ((currentPlayer.getItem(item) instanceof Container && !(currentPlayer.getItem(item) instanceof NPC)) || (currentPlayer.getRoom().getItem(item) instanceof Container && !(currentPlayer.getRoom().getItem(item) instanceof NPC))) {
 					Container container = null;
 					if (currentPlayer.getItem(item) instanceof Container) {
 						container = (Container) currentPlayer.getItem(item);
@@ -474,7 +474,7 @@ public class Game {
 					if (!(currentPlayer.containsItem(key) || currentPlayer.getRoom().containsItem(key))) {
 						Writer.println("You don't see the container.");
 					} else {
-						if (currentPlayer.getItem(key) instanceof Container || currentPlayer.getRoom().getItem(key) instanceof Container) {
+						if ((currentPlayer.getItem(key) instanceof Container && !(currentPlayer.getItem(key) instanceof NPC)) || (currentPlayer.getRoom().getItem(key) instanceof Container && !(currentPlayer.getRoom().getItem(key) instanceof NPC))) {
 							Container container = null;
 							if (currentPlayer.getItem(key) instanceof Container) {
 								container = (Container) currentPlayer.getItem(key);
