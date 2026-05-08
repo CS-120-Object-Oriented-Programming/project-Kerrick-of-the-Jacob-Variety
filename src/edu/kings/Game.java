@@ -117,6 +117,17 @@ public class Game {
 			case CommandEnum.FOLLOWERS:
 				Writer.println(currentPlayer.myFollowers());
 				break;
+			case CommandEnum.GIVE:
+				give(command);
+				break;
+			/*case CommandEnum.QUEST:
+				completeQuest(command);
+				break;*/
+			case CommandEnum.COME:
+				come(command);
+				break;
+			case CommandEnum.ESCAPE:
+				escape(command);
 			default:
 				Writer.println(commandWord + " is not implemented yet!");
 			}
@@ -191,8 +202,8 @@ public class Game {
 	 */
 	private void printWelcome() {
 		Writer.println();
-		Writer.println("Welcome to the Campus of Kings!");
-		Writer.println("Campus of Kings is a new, incredibly boring adventure game.");
+		Writer.println("Welcome to the Surviving the Island!");
+		Writer.println("Surviving the Island is a new, incredibly potential filled adventure game.");
 		Writer.println("Type 'help' if you need help.");
 		Writer.println();
 		printLocationInformation();
@@ -500,6 +511,90 @@ public class Game {
 						}
 					}
 				}
+			}
+		}
+	}
+	
+	/**
+	 * Tries to give an item to an NPC.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
+	private void give(Command command) {
+		if (!command.hasSecondWord()) {
+			Writer.println("Give what?");
+		} else {
+			String item = command.getRestOfLine();
+			if (currentPlayer.containsItem(item)) {
+				Item gift = currentPlayer.getItem(item);
+				Writer.print("Which NPC would you like to give it too?\n> ");
+				String npc = Reader.getResponse();
+				if (currentPlayer.containsFollower(npc)) {
+					if (currentPlayer.getFollower(npc).canAddItem(gift)) {
+						currentPlayer.getFollower(npc).addItem(currentPlayer.removeItem(item));
+					}
+				} else if (currentPlayer.getRoom().containsItem(npc) && currentPlayer.getRoom().getItem(npc) instanceof NPC) {
+					if (((NPC)currentPlayer.getRoom().getItem(npc)).canAddItem(gift)) {
+						score += gift.getPoints();
+						((NPC)currentPlayer.getRoom().getItem(npc)).addItem(currentPlayer.removeItem(item));
+					}
+				} else {
+					Writer.println("They are no where to be seen");
+				}
+			} else {
+				Writer.println("You don't have that item.");
+			}
+		}
+	}
+	
+	/**
+	 * Tries to complete an NPC quest.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 *\/
+	private void completeQuest(Command command) {
+		
+	}*/
+	
+	/**
+	 * Makes an NPC follow you.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
+	private void come(Command command) {
+		if (!command.hasSecondWord()) {
+			Writer.println("Who would you like to follow you?");
+		} else {
+			String npc = command.getRestOfLine();
+			if (!currentPlayer.getRoom().containsItem(npc)) {
+				Writer.println("They aren't here.");
+			} else if (currentPlayer.getRoom().getItem(npc) instanceof NPC) {
+				currentPlayer.addItem(currentPlayer.getRoom().getItem(npc));
+				currentPlayer.getRoom().removeItem(npc);
+				Writer.println(currentPlayer.getFollower(npc) + " is now following you.");
+			}
+		}
+	}
+	
+	/**
+	 * Tries to escape the island.
+	 *
+	 * @param command
+	 *            The command to be processed.
+	 */
+	private void escape(Command command) {
+		if (currentPlayer.getRoom().equals(new Room ("Helicopter", "next to a helicopter, you might be able to leave on it."))) {
+			if (currentPlayer.getFollowerPoints() == 0) {
+				Writer.println("You need to escape with at least one follower");
+			} else {
+				score += currentPlayer.getFollowerPoints();
+				Writer.println("Congradulations! You have escaped with some others!");
+				currentPlayer.myFollowers();
+				printStatus();
+				processCommand(new Command(CommandEnum.QUIT));
 			}
 		}
 	}

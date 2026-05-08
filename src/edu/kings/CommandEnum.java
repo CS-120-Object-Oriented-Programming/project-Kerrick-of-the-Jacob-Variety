@@ -32,7 +32,15 @@ public enum CommandEnum {
 	/** The Pack command. */
 	PACK("pack"),
 	/** The Followers command. */
-	FOLLOWERS("followers");
+	FOLLOWERS("followers"),
+	/** The Give command. */
+	GIVE("give"),
+	/** The Quest command. */
+	QUEST("quest"), 
+	/** The Come command. */
+	COME("come"), 
+	/** The Escape command. */
+	ESCAPE("escape");
 	
 	/** A string for all Commands. */
 	private final String command;

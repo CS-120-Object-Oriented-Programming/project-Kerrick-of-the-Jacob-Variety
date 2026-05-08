@@ -7,6 +7,4 @@ Type 'help' if you need help.
  Knotted Place:
 You are somewhere in the middle of the woods with knots tied everywhere. A boy scout may be nearby.
 Exits: []
-> followers
-Currently; nobody is following you.
 > 

@@ -43,11 +43,24 @@ public class NPC extends Container {
 	 */
 	@Override
 	public void addItem(Item newItem) {
-		if (questItems.containsKey(newItem.getName().toLowerCase())) {
+		if (canAddItem(newItem)) {
 			super.inventory.put(newItem.getName().toLowerCase(), newItem);
-		} else {
-			Writer.println("I'm sorry but I don't want that.");
 		}
+	}
+	
+	/*
+	 * Checks to see if the npc can take an item.
+	 * 
+	 * @param newItem  The item trying to be given to the npc.
+	 */
+	public boolean canAddItem(Item newItem) {
+		boolean tempVal = false;
+		if (questItems.containsKey(newItem.getName().toLowerCase())) {
+			tempVal = true;
+		} else {
+			Writer.println(super.getName() + ": I'm sorry but I don't want that.");
+		}
+		return tempVal;
 	}
 	
 	/* 
@@ -56,7 +69,7 @@ public class NPC extends Container {
 	 * @return whether the NPC has everything they need or not.
 	 */
 	public boolean missingItems() {
-		String printVal = "I am missing: ";
+		String printVal = super.getName() + ": I am missing: ";
 		boolean retVal = true;
 		for (Item checker : questItems.values()) {
 			if (!(super.containsItem(checker.getName().toLowerCase()))) {
@@ -64,8 +77,8 @@ public class NPC extends Container {
 				retVal = true;
 			}
 		}
-		if (printVal.equals("I am missing: ")) {
-			printVal = "I don't need anything else.";
+		if (printVal.equals(super.getName() + ": I am missing: ")) {
+			printVal = super.getName() + ": I don't need anything else.";
 			retVal = false;
 		}
 		Writer.println(printVal);
@@ -81,6 +94,8 @@ public class NPC extends Container {
 		boolean retVal = false;
 		if (room == questRoom || questRoom == null) {
 			retVal = true;
+		} else {
+			Writer.println(super.getName() + ": I'm not in the right room.");
 		}
 		return retVal;
 	}
@@ -92,11 +107,24 @@ public class NPC extends Container {
 	 */
 	public Item completeQuest(Room room) {
 		Item retItem = null;
-		if (checkRoom(room) && missingItems() && !isQuestCompleted) {
-			Writer.println("I have completed my quest. Here take this.");
+		if (questCompletable(room) && !isQuestCompleted) {
+			Writer.println(super.getName() + ": I have completed my quest. Here take this.");
 			retItem = questItem;
 			isQuestCompleted = true;
 		}
 		return retItem;
+	}
+	
+	/*
+	 * Returns whether the NPC can complete their quest.
+	 * 
+	 * @return whether the NPC can complete their quest.
+	 */
+	public boolean questCompletable(Room room) {
+		boolean tempVal = false;
+		if (missingItems() && checkRoom(room)) {
+			tempVal = true;
+		}
+		return tempVal;
 	}
 }

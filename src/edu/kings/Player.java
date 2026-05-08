@@ -24,7 +24,7 @@ public class Player {
 	private HashMap<String, Item> inventory = new HashMap<>();
 	
 	/** This is a HashMap of NPC's following the player. */
-	private HashMap<String, Item> followers = new HashMap<>();
+	private HashMap<String, NPC> followers = new HashMap<>();
 	
 	// Sets a starting room for the player object
 	public Player(Room startingRoom) {
@@ -47,11 +47,16 @@ public class Player {
 		return inventory.get(name);
 	}
 	
+	// Accessor function for getting specific items
+	public NPC getFollower(String name) {
+		return followers.get(name);
+	}
+	
 	// Returns the inventory in a printable way
 	public String getInv() {
 		String retVal = "";
 		if (inventory.isEmpty()) {
-			retVal += "Sorry, you don't have anything right now";
+			retVal += "Sorry, you don't have anything right now.";
 		} else {
 			retVal += "Taking an inventory you find you have:";
 			for (Item item : inventory.values()) {
@@ -72,7 +77,7 @@ public class Player {
 		if (!isOverWeight(newItem) && !(newItem instanceof NPC)) {
 			inventory.put(newItem.getName().toLowerCase(), newItem);
 		} else if (newItem instanceof NPC) {
-			followers.put(newItem.getName().toLowerCase(), newItem);
+			followers.put(newItem.getName().toLowerCase(), (NPC)newItem);
 		}
 	}
 	
@@ -100,11 +105,27 @@ public class Player {
 	 * Returns whether or not an item exists in items.
 	 * 
 	 * @param item  The item to be checked.
-	 * @return A true or false depending on if the item exists
+	 * @return A true or false depending on if the item exists.
 	 */
 	public boolean containsItem(String item) {
 		boolean tempval = false;
 		if (inventory.containsKey(item)) {
+			tempval = true;
+		} else {
+			tempval = false;
+		}
+		return tempval;
+	}
+	
+	/** 
+	 * Returns whether or not an NPC is following the player.
+	 * 
+	 * @param follower  The follower to be checked for.
+	 * @return A true or false depending on if the NPC is following the player.
+	 */
+	public boolean containsFollower(String follower) {
+		boolean tempval = false;
+		if (followers.containsKey(follower)) {
 			tempval = true;
 		} else {
 			tempval = false;
@@ -133,5 +154,32 @@ public class Player {
 			following += " are following you.";
 		}
 		return following;
+	}
+	
+	/** 
+	 * Returns whether or not the NPC's are able to complete their quest.
+	 * 
+	 * @param npc  the NPC trying to complete a quest.
+	 * @return whether or not the NPC's are able to complete their quest.
+	 */
+	public boolean canCompleteQuest(NPC npc) {
+		boolean tempVal = false;
+		if (npc.questCompletable(currentRoom)) {
+			tempVal = true;
+		}
+		return tempVal;
+	}
+	
+	/**
+	 * Returns the total points that all of your followers are worth.
+	 * 
+	 * @return the total points that all of your followers are worth.
+	 */
+	public int getFollowerPoints() {
+		int tempPoints = 0;
+		for (NPC follower : followers.values()) {
+			tempPoints += follower.getPoints();
+		}
+		return tempPoints;
 	}
 }
