@@ -63,6 +63,16 @@ public class World {
 	}
 	
 	/**
+	 * Helper method for creating an NPC.
+	 * 
+	 * @param theRoom  The Room the NPC is being added to.
+	 * @param npc  The NPC being added to the Room.
+	 */
+	private void createNPCs(Room theRoom, NPC npc) {
+		theRoom.addItem(npc);
+	}
+	
+	/**
 	 * Helper method for creating an item.
 	 * 
 	 * @param theRoom  The Room the Item is being added to.
@@ -154,6 +164,53 @@ public class World {
 		this.addRoom(classroom);
 
 		// Creating all the doors between the rooms.
+		this.createDoor(shore, start, "north");
+		this.createDoor(start, shore, "south");
+
+		this.createDoor(start, lookout, "north");
+		this.createDoor(lookout, start, "south");
+
+		this.createDoor(lookout, lumber, "east");
+		this.createDoor(lumber, lookout, "west");
+
+		this.createDoor(lookout, tools, "north");
+		this.createDoor(tools, lookout, "south");
+
+		this.createDoor(tools, knottedPlace, "west");
+		this.createDoor(knottedPlace, tools, "east");
+
+		this.createDoor(tools, tailors, "north");
+		this.createDoor(tailors, tools, "south");
+
+		this.createDoor(tools, chute, "east");
+		this.createDoor(chute, tools, "west");
+
+		this.createDoor(knottedPlace, ropes, "south");
+		this.createDoor(ropes, knottedPlace, "north");
+
+		this.createDoor(knottedPlace, tightrope, "west");
+		this.createDoor(tightrope, knottedPlace, "east");
+
+		this.createDoor(tightrope, cliff, "north");
+		this.createDoor(cliff, tightrope, "south");
+
+		this.createDoor(cliff, daves, "west");
+		this.createDoor(daves, cliff, "east");
+
+		this.createDoor(tailors, bush, "east");
+		this.createDoor(bush, tailors, "west");
+
+		this.createDoor(chute, jackie, "east");
+		this.createDoor(jackie, chute, "west");
+
+		this.createDoor(jackie, bridge, "east");
+		this.createDoor(bridge, jackie, "west");
+
+		this.createDoor(bridge, helicopter, "east");
+		this.createDoor(helicopter, bridge, "west");
+		
+		
+		
 		this.createDoor(essef, outside, "south");
 		this.createDoor(outside, essef, "north");
 
@@ -179,6 +236,40 @@ public class World {
 		this.createDoor(classroom, lab, "north");
 		
 		// Creating all the items in the rooms.
+		Item basketball = new Item("Basketball", "A strange basketball with eyes and a mouth drawn on it and, what's that? Oh really? Huh, this basketball has plenty of stories.", 5, 1, true,  false);
+		Item axe = new Item("Axe", "A plain old fireman's axe just being around.", 10, 5, true,  false);
+		Item baseball = new Item("Baseball", "A cute little baseball with a face drawn on and big lushious lashes, if it starts chanting in Latin, it's never too late to find a new friend.", 1, 0.1, true,  false);
+		Item rope = new Item("Rope", "Just an ordinary rope used for tying things. Please don't fray it too bad.", 3, 0.5, true,  false);
+		Item football = new Item("Football", "This is a unique looking football, with strong eyes and surprisingly no mouth for how much backtalk you think you hear. Always is fun to punt things.", 3, 0.5, true,  false);
+		Item scissors = new Item("Scissors", "A pair of sharp scissors that can be used for a lot of damage, or cutting fabric is fine.", 1, 0.1, true,  false);
+		
+		this.createItems(lookout, basketball);
+		this.createItems(tools, axe);
+		this.createItems(cliff, baseball);
+		this.createItems(ropes, rope);
+		this.createItems(chute, football);
+		this.createItems(knottedPlace, scissors);
+
+		HashMap<String, Item> davesItems = new HashMap<>();
+		davesItems.put(basketball.getName().toLowerCase(), basketball);
+		davesItems.put(football.getName().toLowerCase(), football);
+		davesItems.put(baseball.getName().toLowerCase(), baseball);
+		
+		HashMap<String, Item> tylersItems = new HashMap<>();
+		davesItems.put(rope.getName().toLowerCase(), rope);
+		
+		HashMap<String, Item> tailorsItems = new HashMap<>();
+		davesItems.put(scissors.getName().toLowerCase(), scissors);
+		
+		HashMap<String, Item> jacksItems = new HashMap<>();
+		davesItems.put(axe.getName().toLowerCase(), axe);
+		
+		this.createNPCs(daves, new NPC("Dave", "A crazy person who has probably been here for at least a decade and keeps saying something about missing friends.", 100, 100, true,  true, davesItems, null, null));
+		this.createNPCs(knottedPlace, new NPC("Tyler", "A former Boy Scout who probably knows how to tie at least one knot.", 20, 100, true,  true, tylersItems, null, null));
+		this.createNPCs(tailors, new NPC("Taylor", "A professional tailor who found himself lost on this island just like you.", 50, 100, true,  true, tailorsItems, null, null));
+		this.createNPCs(jackie, new NPC("Jack", "A buff lumberjack in the stereotypical attire really looking to let out his anger on some logs.", 10, 100, true,  true, jacksItems, null, null));
+		
+		
 		this.createItems(outside, new Item("Spikeball", "A spikeball used for a popular game in King's Court. This one must've rolled away.", 0, 4, true, false));
 		this.createItems(campusCenter, new Item("TV Remote", "The remote for the TV's in the campus center. I guess they just left it here on its own.", 0, 0.1, true, false));
 		this.createItems(admin, new Item("ID Card", "Your ID Card is here and ready for you. (I don't know where you get new ID's).", 0, 0.1, true, false));
