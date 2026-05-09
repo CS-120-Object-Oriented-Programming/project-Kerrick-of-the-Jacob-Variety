@@ -1,0 +1,50 @@
+
+Welcome to the Surviving the Island!
+Surviving the Island is a new, incredibly potential filled adventure game.
+Type 'help' if you need help.
+
+
+ Start:
+You are at the place where it all began, some might even say the origin point.
+Exits: [south, north]
+> go north
+
+ Lookout:
+You are on top of a tall hill and can see the whole island from here. This might be a good place to stargaze
+Exits: [east, south, north]
+- Basketball
+> go north
+
+ Tools:
+You are in a place that seems to once have held tons of survival tools.
+Exits: [east, south, north, west]
+- Axe
+> go east
+
+ Chute:
+You are in a suddenly darker part of the forest, which makes no sense, until you look up and see a parachute dangling in the canopy.
+Exits: [east, west]
+- Football
+> go east
+
+ Jackie:
+You are in a place with a lot of poor attempts at making an axe and a lot of failed tree cuts, there may be a lumberjack nearby.
+Exits: [east, west]
+- Jack
+> come jack
+Jack: A buff lumberjack in the stereotypical attire really looking to let out his anger on some logs. (200.0lbs.) is now following you.
+> go east
+
+ Bridge:
+You are about to cross an old stone bridge, the ones that have a troll in the movies.
+Exits: [east, west]
+> go east
+
+ Helicopter:
+You are next to a helicopter, you might be able to leave on it.
+Exits: [west]
+> escape
+Congradulations! You have escaped with some others!
+You have earned 10 points in 6 turns.
+I hope you weren't too bored here on the Campus of Kings!
+Thank you for playing.  Good bye.
