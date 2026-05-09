@@ -44,6 +44,15 @@ public class Item {
 	}
 
 	/**
+	 * Returns the description of this item.
+	 *
+	 * @return The description of this item.
+	 */
+	protected String getDescription() {
+		return description;
+	}
+
+	/**
 	 * Returns the points of this item.
 	 *
 	 * @return The points of this item.

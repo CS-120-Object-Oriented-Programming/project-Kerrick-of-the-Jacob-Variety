@@ -1,7 +1,7 @@
 package edu.kings;
 /**
- * This class is the main class of the "Campus of Kings" application.
- * "Campus of Kings" is a very simple, text based adventure game. Users can walk
+ * This class is the main class of the "Surviving the Island" application.
+ * "Surviving the Island" is a very simple, text based adventure game. Users can walk
  * around some scenery. That's all. It should really be extended to make it more
  * interesting!
  *
@@ -127,7 +127,8 @@ public class Game {
 				come(command);
 				break;
 			case CommandEnum.ESCAPE:
-				escape(command);
+				wantToQuit = escape(command);
+				break;
 			default:
 				Writer.println(commandWord + " is not implemented yet!");
 			}
@@ -584,18 +585,22 @@ public class Game {
 	 *
 	 * @param command
 	 *            The command to be processed.
+	 * @return whether or not you can escape.
 	 */
-	private void escape(Command command) {
-		if (currentPlayer.getRoom().equals(new Room ("Helicopter", "next to a helicopter, you might be able to leave on it."))) {
+	private boolean escape(Command command) {
+		boolean wantToQuit = false;
+		if (currentPlayer.getRoom().equals(world.getRoom("helicopter"))) {
 			if (currentPlayer.getFollowerPoints() == 0) {
-				Writer.println("You need to escape with at least one follower");
+				Writer.println("You need to escape with at least one follower.");
 			} else {
 				score += currentPlayer.getFollowerPoints();
 				Writer.println("Congradulations! You have escaped with some others!");
 				currentPlayer.myFollowers();
-				printStatus();
-				processCommand(new Command(CommandEnum.QUIT));
+				wantToQuit = true;
 			}
+		} else {
+			Writer.println("You can't escape the island here.");
 		}
+		return wantToQuit;
 	}
 }

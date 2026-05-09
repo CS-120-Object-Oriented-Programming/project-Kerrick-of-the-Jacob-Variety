@@ -265,9 +265,9 @@ public class World {
 		davesItems.put(axe.getName().toLowerCase(), axe);
 		
 		this.createNPCs(daves, new NPC("Dave", "A crazy person who has probably been here for at least a decade and keeps saying something about missing friends.", 100, 100, true,  true, davesItems, null, null));
-		this.createNPCs(knottedPlace, new NPC("Tyler", "A former Boy Scout who probably knows how to tie at least one knot.", 20, 100, true,  true, tylersItems, null, null));
-		this.createNPCs(tailors, new NPC("Taylor", "A professional tailor who found himself lost on this island just like you.", 50, 100, true,  true, tailorsItems, null, null));
-		this.createNPCs(jackie, new NPC("Jack", "A buff lumberjack in the stereotypical attire really looking to let out his anger on some logs.", 10, 100, true,  true, jacksItems, null, null));
+		this.createNPCs(knottedPlace, new NPC("Tyler", "A former Boy Scout who probably knows how to tie at least one knot.", 20, 120, true,  true, tylersItems, null, null));
+		this.createNPCs(tailors, new NPC("Taylor", "A professional tailor who found himself lost on this island just like you.", 50, 150, true,  true, tailorsItems, null, null));
+		this.createNPCs(jackie, new NPC("Jack", "A buff lumberjack in the stereotypical attire really looking to let out his anger on some logs.", 10, 200, true,  true, jacksItems, null, null));
 		
 		
 		this.createItems(outside, new Item("Spikeball", "A spikeball used for a popular game in King's Court. This one must've rolled away.", 0, 4, true, false));

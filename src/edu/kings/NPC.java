@@ -127,4 +127,15 @@ public class NPC extends Container {
 		}
 		return tempVal;
 	}
+	
+	/**
+	 * Returns a string description including all the details of an item.
+	 * For example,
+	 * Axe: A shiny axe used to cut down trees. (1lbs.)
+	 *
+	 * @return A string representing all the details of an item.
+	*/
+	public String toString() {
+		return super.getName() + ": " + super.getDescription() + " (" + super.getWeight() + "lbs.)";
+	}
 }

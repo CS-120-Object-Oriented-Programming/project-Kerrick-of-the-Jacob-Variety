@@ -162,7 +162,7 @@ public class Room {
 		returnStr += doorways.keySet();
 		for (Item item: items.values()) {
 			if(item.getIsKnown()) {
-				returnStr += " " + item.getName();
+				returnStr += "\n- " + item.getName();
 			}
 		}
 		return returnStr + "\n";
